@@ -8,36 +8,35 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Objects;
+
 @Service
-public class NotesServices {
+public class NotesServices implements INotesServices {
     @Autowired
     INotesRepository iNotesRepository;
 
+    @Override
     public List<Notes> getNotes() {
         return iNotesRepository.findAll();
     }
-
+    @Override
     public Notes createNote(Notes notes) {
         return iNotesRepository.save(notes);
     }
 
+    @Override
     public Notes edidNote(Notes note, Long id) {
-        Notes noteById = iNotesRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Nota no encontrada"));
-        if (note.getTitle() != null) {
+        Notes noteById = iNotesRepository.findById(id).get();
+        if (Objects.nonNull(note.getTitle()) && !"".equalsIgnoreCase(note.getTitle())) {
             noteById.setTitle(note.getTitle());
         }
-        if (note.getDescription() != null) {
+        if (Objects.nonNull(note.getDescription()) && !"".equalsIgnoreCase(note.getDescription())) {
             noteById.setDescription(note.getDescription());
         }
-        iNotesRepository.save(noteById);
-        return noteById;
+        return iNotesRepository.save(noteById);
     }
-
-    public Notes deleteNote(Long id) {
-        Notes noteById = iNotesRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Nota no encontrada"));
+    @Override
+    public void deleteNote(Long id) {
         iNotesRepository.deleteById(id);
-        return noteById;
     }
 }
