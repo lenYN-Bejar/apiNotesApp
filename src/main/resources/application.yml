@@ -1,0 +1,40 @@
+spring:
+  profiles:
+    active: qa
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    password: password
+    url: jdbc:postgresql://localhost:5432/notesapp
+    username: username
+  jpa:
+    database: POSTGRESQL
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  sql:
+    init:
+      platform: postgres
+
+---
+spring:
+  config:
+    activate:
+      on-profile: qa
+  datasource:
+    password: password
+    url: jdbc:postgresql://localhost:5432/notesapp_qa
+    username: username
+  jpa:
+    database: POSTGRESQL
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  sql:
+    init:
+      platform: postgres

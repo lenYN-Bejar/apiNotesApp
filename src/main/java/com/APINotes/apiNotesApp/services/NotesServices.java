@@ -9,6 +9,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class NotesServices implements INotesServices {
@@ -38,5 +39,10 @@ public class NotesServices implements INotesServices {
     @Override
     public void deleteNote(Long id) {
         iNotesRepository.deleteById(id);
+    }
+
+    @Override
+    public Optional<Notes> findByTitle(String title) {
+        return iNotesRepository.findByTitle(title);
     }
 }
