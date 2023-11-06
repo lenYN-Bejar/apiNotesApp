@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.APINotes</groupId>
 	<artifactId>apiNotesApp</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>apiNotesApp</name>
 	<description>APINotesAPP</description>
 	<properties>

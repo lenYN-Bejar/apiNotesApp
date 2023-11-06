@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: qa
+    active: prod
 ---
 spring:
   config:
@@ -28,6 +28,25 @@ spring:
   datasource:
     password: password
     url: jdbc:postgresql://localhost:5432/notesapp_qa
+    username: username
+  jpa:
+    database: POSTGRESQL
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  sql:
+    init:
+      platform: postgres
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    password: password
+    url: jdbc:postgresql://localhost:5432/notesapp_prod
     username: username
   jpa:
     database: POSTGRESQL
