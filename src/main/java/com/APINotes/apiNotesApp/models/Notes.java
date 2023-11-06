@@ -22,6 +22,4 @@ public class Notes {
     @NotBlank(message = "Please add Title")
     private String title;
     private String description;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date fecha_creacion;
 }

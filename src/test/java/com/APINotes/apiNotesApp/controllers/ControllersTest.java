@@ -30,16 +30,12 @@ class ControllersTest {
     private INotesServices iNotesServices;
 
     private Notes notes;
-    LocalDateTime currentDateTime = LocalDateTime.now();
-    Date date = Date.from(currentDateTime.atZone(ZoneId.systemDefault()).toInstant()); // Convierte LocalDateTime a Date
-
     @BeforeEach
     void setUp() {
         notes = Notes.builder()
                 .id(1L)
                 .title("La La Land")
                 .description("Ganadora del Oscar")
-                .fecha_creacion(date)
                 .build();
     }
     @Test
@@ -47,7 +43,6 @@ class ControllersTest {
         Notes postNotes = Notes.builder()
                 .title("La La Land")
                 .description("Ganadora del Oscar")
-                .fecha_creacion(date)
                 .build();
         Mockito.when(iNotesServices.createNote(postNotes)).thenReturn(notes);
         System.out.println("Notas => " + notes);
