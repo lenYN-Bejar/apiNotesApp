@@ -7,7 +7,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import java.util.Collections;
 
-@SpringBootApplication
+@SpringBootApplication(proxyBeanMethods = false)
 public class ApiNotesAppApplication {
 
 	public static void main(String[] args) {
